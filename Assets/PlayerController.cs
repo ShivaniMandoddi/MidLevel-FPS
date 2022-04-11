@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
             
             animator.SetTrigger("IsReload");
             int amountAmmoNeeded = maxReloadAmmo-reloadAmmo;
+            
             int ammoAvailable = amountAmmoNeeded < ammo ? amountAmmoNeeded: ammo;
             
             reloadAmmo += ammoAvailable;
@@ -80,8 +81,9 @@ public class PlayerController : MonoBehaviour
     {
         inputX = Input.GetAxis("Horizontal") * playerSpeed;
         inputz = Input.GetAxis("Vertical") * playerSpeed;
-       
-        transform.position += new Vector3(inputX , 0f, inputz);
+
+        //transform.position += new Vector3(inputX , 0f, inputz);
+        transform.Translate(inputX, 0f, inputz);
         
         if(Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
@@ -90,11 +92,14 @@ public class PlayerController : MonoBehaviour
         }
         float mouseX = Input.GetAxis("Mouse X")*playerRotationSpeed;
         float mouseY = Input.GetAxis("Mouse Y")*playerRotationSpeed;
-        //Debug.Log(mouseY);
-        playerRotation = Quaternion.Euler(0f, mouseX, 0f)*playerRotation;
+
+        playerRotation = Quaternion.Euler(0f, mouseX, 0f);//*playerRotation;
         camRotation = Quaternion.Euler(-mouseY, 0f,0f)*camRotation;
         camRotation = ClampRotationPlayer(camRotation);
-        this.transform.localRotation = playerRotation;
+        //this.transform.localRotation = playerRotation;
+        Debug.Log(playerRotation);
+        //transform.localRotation = playerRotation*transform.localRotation;
+        transform.rotation = playerRotation * transform.rotation;
         cam.transform.localRotation = camRotation;
        
     }
