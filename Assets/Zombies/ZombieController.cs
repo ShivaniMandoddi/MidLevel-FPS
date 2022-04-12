@@ -20,6 +20,16 @@ public class ZombieController : MonoBehaviour
     void Update()
     {
         agent.SetDestination(target.transform.position);
+        if(agent.remainingDistance>agent.stoppingDistance)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isAttacking", false);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isAttacking", true);
+        }
        /* if (Input.GetKey(KeyCode.W))
         {
             anim.SetBool("isWalking", true);
