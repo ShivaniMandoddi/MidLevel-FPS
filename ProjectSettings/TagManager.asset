@@ -8,6 +8,7 @@ TagManager:
   - Medical
   - Lava
   - Zombie
+  - RagDollZombie
   layers:
   - Default
   - TransparentFX

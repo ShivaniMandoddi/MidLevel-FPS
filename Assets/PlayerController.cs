@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     int maxMedical = 100;
     int reloadAmmo = 0;
     int maxReloadAmmo = 10;
-   
+    //public GameObject target;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -184,5 +184,15 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Medical: "+medical);
         }
     }
+    public void TakeHit(int value)
+    {
+        medical = Mathf.Clamp(medical - value, 0, maxMedical); // medical=Health
+        print("Health: " + medical);
+        if(medical==0)
+        {
+            print("Game Over");
+        }
+    }
+    
 }
 

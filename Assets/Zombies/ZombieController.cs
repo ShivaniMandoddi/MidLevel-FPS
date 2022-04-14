@@ -143,7 +143,9 @@ public class ZombieController : MonoBehaviour
             case STATE.DEAD:
                 //GameObject tempRD = Instantiate(ragDollPrefab, this.transform.position, this.transform.rotation);
                 //tempRD.transform.Find("Hips").GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * 10000);
-                //Destroy(this.gameObject);
+                Destroy(agent);
+                this.GetComponent<SinkToGround>().ReadyToSink();
+
                 break;
             default:
                 break;
@@ -196,4 +198,14 @@ public class ZombieController : MonoBehaviour
         anim.SetBool("isDead", true);
         state = STATE.DEAD;
     }
+    int damageAmount = 5;
+    public void DamagePlayer()
+    {
+        target.GetComponent<PlayerController>().TakeHit(damageAmount);
+    //create a method name random sound,when player takes damageS   
+    }
 }
+// FPS
+// Any fps game with using 
+// Navmesh,fps controller , animations, object pool,terrain, 
+// finaite state machines and sounds

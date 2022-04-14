@@ -30,9 +30,8 @@ public class SpawnManager : MonoBehaviour
             if (NavMesh.SamplePosition(randomPoint, out hit, 10f, NavMesh.AllAreas))
             {
                 int k = Random.Range(0, zombiePrefabs.Length);
-                Debug.Log(k);
                 Instantiate(zombiePrefabs[k], randomPoint, Quaternion.identity);
-
+                 
             }
             else
             {
