@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float playerSpeed;
     public float playerJumpForce;
     public float playerRotationSpeed;
+    public Transform bulletLaunch;
     Rigidbody rb;
     CapsuleCollider colliders;
     Quaternion camRotation;
@@ -18,12 +20,13 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     float inputX;
     float inputz;
-    int ammo = 0;
+    int ammo = 50;
     int medical = 100;
     int maxAmmo = 100;
     int maxMedical = 100;
     int reloadAmmo = 0;
     int maxReloadAmmo = 10;
+   
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -45,8 +48,9 @@ public class PlayerController : MonoBehaviour
             {
                 //animator.SetBool("IsFiring", !animator.GetBool("IsFiring"));
                 animator.SetTrigger("IsFiring");
+                WhenZombieGotHit();
                 ammo = Mathf.Clamp(ammo - 1, 0, maxAmmo);
-                Debug.Log("Ammo Fire Value: "+ammo);
+               // Debug.Log("Ammo Fire Value: "+ammo);
             }
             else
             {
@@ -77,6 +81,35 @@ public class PlayerController : MonoBehaviour
         }
       
     }
+
+    private void WhenZombieGotHit()
+    {
+        RaycastHit hitInfo;
+        if(Physics.Raycast(bulletLaunch.position,bulletLaunch.forward,out hitInfo,100f))
+        {
+            GameObject hitZombie = hitInfo.collider.gameObject;
+            if(hitZombie.tag=="Zombie")
+            {
+                if (UnityEngine.Random.Range(0, 5) < 3)
+                {
+                    /*   GameObject tempRD = Instantiate(ragDollPrefab, this.transform.position, this.transform.rotation);
+                       tempRD.transform.Find("Hips").GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * 10000);
+                       Destroy(this.gameObject);*/
+                    GameObject tempRD = hitZombie.GetComponent<ZombieController>().ragDollPrefab;
+                    GameObject newTempRD = Instantiate(tempRD, hitZombie.transform.position, hitZombie.transform.rotation);
+                    newTempRD.transform.Find("Hips").GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * 10000);
+                    Destroy(hitZombie);
+                }
+                else
+                {
+                    hitZombie.GetComponent<ZombieController>().KillZombie();
+                }
+                
+
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
         inputX = Input.GetAxis("Horizontal") * playerSpeed;
@@ -97,7 +130,7 @@ public class PlayerController : MonoBehaviour
         camRotation = Quaternion.Euler(-mouseY, 0f,0f)*camRotation;
         camRotation = ClampRotationPlayer(camRotation);
         //this.transform.localRotation = playerRotation;
-        Debug.Log(playerRotation);
+       // Debug.Log(playerRotation);
         //transform.localRotation = playerRotation*transform.localRotation;
         transform.rotation = playerRotation * transform.rotation;
         cam.transform.localRotation = camRotation;

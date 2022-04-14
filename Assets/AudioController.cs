@@ -7,6 +7,7 @@ public class AudioController : MonoBehaviour
     // Start is called before the first frame update
     AudioSource audioSource;
     public AudioClip walkClip;
+    public AudioClip fireClip;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();   
@@ -19,6 +20,7 @@ public class AudioController : MonoBehaviour
     }
     public void ShotFire()
     {
+        audioSource.clip = fireClip;
         audioSource.Play();
     }
     public void Walk()
