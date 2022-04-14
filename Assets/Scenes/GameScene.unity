@@ -178,30 +178,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: AmmoBox
       objectReference: {fileID: 0}
-    - target: {fileID: 5710403498752496786, guid: 2284fb370519d4434ad0ce0946f96aa7, type: 3}
-      propertyPath: m_TagString
-      value: Ammo
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2284fb370519d4434ad0ce0946f96aa7, type: 3}
---- !u!1 &277015817 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5710403498752496786, guid: 2284fb370519d4434ad0ce0946f96aa7, type: 3}
-  m_PrefabInstance: {fileID: 277015816}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &277015818
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 277015817}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.6496968, y: 0.47787344, z: 0.25777245}
-  m_Center: {x: 0.01509732, y: 0.26106328, z: -0.02468872}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,30 +412,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: MedBox
       objectReference: {fileID: 0}
-    - target: {fileID: 7741545902358665241, guid: 7eb2d2e5ed5664c3da253b1245ff8187, type: 3}
-      propertyPath: m_TagString
-      value: Medical
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eb2d2e5ed5664c3da253b1245ff8187, type: 3}
---- !u!1 &1201689124 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7741545902358665241, guid: 7eb2d2e5ed5664c3da253b1245ff8187, type: 3}
-  m_PrefabInstance: {fileID: 1201689123}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1201689125
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1201689124}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.48912144, y: 0.42765367, z: 0.5220957}
-  m_Center: {x: 0.012356281, y: 0.17039913, z: 0.019705296}
 --- !u!4 &1439062001 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3539918439486604752, guid: c356d39725bcc4ec0925ab50a3cf6a42, type: 3}
@@ -1254,6 +1210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94917193072311f4484a3c56cc9a48a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkClip: {fileID: 0}
+  fireClip: {fileID: 0}
 --- !u!1 &1718136588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,6 +1531,7 @@ MonoBehaviour:
   playerSpeed: 0.1
   playerJumpForce: 300
   playerRotationSpeed: 20
+  bulletLaunch: {fileID: 0}
   cam: {fileID: 963194227}
   animator: {fileID: 1595345889}
 --- !u!54 &1942060715
