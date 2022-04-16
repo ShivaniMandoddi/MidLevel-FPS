@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     int maxReloadAmmo = 10;
     public GameObject steveModelPrefab;
     int deathCount;
-    
+    public Slider health;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        health.value = (float)medical / 100f;
+        Debug.Log(health.value);
        if(Input.GetKeyDown(KeyCode.F))
         {
             animator.SetBool("IsAiming", !animator.GetBool("IsAiming"));

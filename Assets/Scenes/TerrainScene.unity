@@ -283,7 +283,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -612,8 +612,8 @@ MonoBehaviour:
   - {fileID: 5176861845160572960, guid: 6a1d6fe89cd7e4fe486e4cabf09b8d3d, type: 3}
   - {fileID: 1099347172983380646, guid: d5b7cf80f1fab4ea0bd49a0e878214fe, type: 3}
   - {fileID: 9153167617879130721, guid: b7dd32307aa7f43bf98270b4b8b91c33, type: 3}
-  number: 5
-  spawnRadius: 10
+  number: 20
+  spawnRadius: 20
   spawnOnStart: 1
 --- !u!4 &286965650
 Transform:
@@ -623,7 +623,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 286965648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 161.47, y: 0, z: 159.43}
+  m_LocalPosition: {x: 125.8, y: 0, z: 92.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3741,6 +3741,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -55.256344
       objectReference: {fileID: 0}
+    - target: {fileID: 4521539665159144288, guid: a92ca8cfb46e28246a21963329d41d4b, type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 53049232}
     - target: {fileID: 4521539665159144288, guid: a92ca8cfb46e28246a21963329d41d4b, type: 3}
       propertyPath: steveModelPrefab
       value: 
