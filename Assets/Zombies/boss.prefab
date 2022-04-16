@@ -322,6 +322,7 @@ GameObject:
   - component: {fileID: 3277696249206785950}
   - component: {fileID: 968304560}
   - component: {fileID: 968304558}
+  - component: {fileID: 5300777084144078680}
   m_Layer: 6
   m_Name: boss
   m_TagString: Zombie
@@ -418,6 +419,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &5300777084144078680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099347172983380646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b349c6e8884d4174795b697bc8c8eb4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1571866649296816644
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,11 +26,14 @@ public class PlayerController : MonoBehaviour
     int maxMedical = 100;
     int reloadAmmo = 0;
     int maxReloadAmmo = 10;
-    //public GameObject target;
+    public GameObject steveModelPrefab;
+    int deathCount;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         colliders = GetComponent<CapsuleCollider>();
+        
         //animator = GetComponent<Animator>();
         //audioSource = GetComponent<AudioSource>();
     }
@@ -90,6 +93,8 @@ public class PlayerController : MonoBehaviour
             GameObject hitZombie = hitInfo.collider.gameObject;
             if(hitZombie.tag=="Zombie")
             {
+                deathCount++;
+                Debug.Log("DeathCount: " + deathCount);
                 if (UnityEngine.Random.Range(0, 5) < 3)
                 {
                     /*   GameObject tempRD = Instantiate(ragDollPrefab, this.transform.position, this.transform.rotation);
@@ -104,10 +109,23 @@ public class PlayerController : MonoBehaviour
                 {
                     hitZombie.GetComponent<ZombieController>().KillZombie();
                 }
-                
+                if(deathCount==GameObject.Find("SpawnPoint").GetComponent<SpawnManager>().number)
+                {
+                    ZombiesCompleted();
+                }
 
             }
         }
+    }
+
+    private void ZombiesCompleted()
+    {
+        Debug.Log("GameOver");
+        Vector3 position = new Vector3(transform.position.x, Terrain.activeTerrain.SampleHeight(this.transform.position), transform.position.z);
+        GameObject tempSteve = Instantiate(steveModelPrefab, position, this.transform.rotation);
+        tempSteve.GetComponent<Animator>().SetTrigger("Dance");
+        GameStart.isGameOver = true;
+        Destroy(this.gameObject);
     }
 
     private void FixedUpdate()
@@ -188,10 +206,15 @@ public class PlayerController : MonoBehaviour
     {
         medical = Mathf.Clamp(medical - value, 0, maxMedical); // medical=Health
         print("Health: " + medical);
-        if(medical==0)
+        if (medical <= 0)
         {
-            print("Game Over");
+            Vector3 position = new Vector3(transform.position.x, Terrain.activeTerrain.SampleHeight(this.transform.position), transform.position.z);
+            GameObject tempSteve = Instantiate(steveModelPrefab, position, this.transform.rotation);
+            tempSteve.GetComponent<Animator>().SetTrigger("Death");
+            GameStart.isGameOver = true;
+            Destroy(this.gameObject);
         }
+            
     }
     
 }

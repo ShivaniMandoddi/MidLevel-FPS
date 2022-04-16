@@ -71,7 +71,7 @@ public class ZombieController : MonoBehaviour
             */
             return;
         }
-        if (target == null)
+        if (target == null&& GameStart.isGameOver==false)
         {
             target = GameObject.FindGameObjectWithTag("Player");
             return;
@@ -115,24 +115,39 @@ public class ZombieController : MonoBehaviour
                 }*/
                 break;
             case STATE.CHASE:
-                agent.SetDestination(target.transform.position);
-                agent.stoppingDistance = 2f;
-                TurnOffAllTriggerAnim();
-                anim.SetBool("isRunning", true);
-                agent.speed = runningSpeed;
-                if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+                if (GameStart.isGameOver)
                 {
-                    state = STATE.ATTACK;
-                }
-                if (CanNotSeePlayer())
-                {
+                    TurnOffAllTriggerAnim();
                     state = STATE.WONDER;
-                    agent.ResetPath();
+                    return;
                 }
+                    agent.SetDestination(target.transform.position);
+                    agent.stoppingDistance = 2f;
+                    TurnOffAllTriggerAnim();
+                    anim.SetBool("isRunning", true);
+                    agent.speed = runningSpeed;
+                    if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+                    {
+                        state = STATE.ATTACK;
+                    }
+                    if (CanNotSeePlayer())
+                    {
+                        state = STATE.WONDER;
+                        agent.ResetPath();
+                    }
+                
                 break;
             case STATE.ATTACK:
+                if (GameStart.isGameOver)
+                {
+                    TurnOffAllTriggerAnim();
+                    state = STATE.WONDER;
+                    agent.ResetPath();
+                    return;
+                }
                 TurnOffAllTriggerAnim();
                 anim.SetBool("isAttacking", true);
+                
                 transform.LookAt(target.transform.position);          // zomnies should look at player;
                 if (DistanceToPlayer() > agent.stoppingDistance + 2f)
                 {
@@ -178,6 +193,9 @@ public class ZombieController : MonoBehaviour
 
     public float DistanceToPlayer()
     {
+        if (GameStart.isGameOver) 
+            return (Mathf.Infinity);
+
         return Vector3.Distance(target.transform.position, this.transform.position);
     }
     public bool CanNotSeePlayer()
@@ -201,11 +219,19 @@ public class ZombieController : MonoBehaviour
     int damageAmount = 5;
     public void DamagePlayer()
     {
-        target.GetComponent<PlayerController>().TakeHit(damageAmount);
+        if (target != null)
+        {
+            target.GetComponent<PlayerController>().TakeHit(damageAmount);
+        }
     //create a method name random sound,when player takes damageS   
     }
 }
 // FPS
 // Any fps game with using 
 // Navmesh,fps controller , animations, object pool,terrain, 
-// finaite state machines and sounds
+// finite state machines and sounds
+public class GameStart
+{
+    public static bool isGameOver = false;
+}
+

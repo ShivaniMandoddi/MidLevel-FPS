@@ -6,12 +6,12 @@ public class SinkToGround : MonoBehaviour
 {
     // Start is called before the first frame update
     float destroyHeight;
-  
+   
     void Start()
     {
         if (this.gameObject.tag == "RagDollZombie")
         {
-            Invoke("ReadyToSink",2f);
+           Invoke("ReadyToSink",2f);
         }
         
     }
@@ -23,10 +23,11 @@ public class SinkToGround : MonoBehaviour
     }
     public void SinkIntoGround()
     {
-        this.transform.Translate(0f, -0.001f, 0f);
+        this.transform.Translate(0f, -1f, 0f);
         if(this.transform.position.y<destroyHeight)
         {
             Destroy(gameObject);
+
         }
     }
     public void ReadyToSink()
