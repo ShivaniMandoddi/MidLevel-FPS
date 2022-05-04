@@ -77,7 +77,7 @@ public class ZombieController : MonoBehaviour
             return;
         }
         
-
+        
         switch (state)
         {
 
