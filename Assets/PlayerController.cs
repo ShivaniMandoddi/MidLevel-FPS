@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         health.value = (float)medical / 100f;
-        Debug.Log(health.value);
+        
        if(Input.GetKeyDown(KeyCode.F))
         {
             animator.SetBool("IsAiming", !animator.GetBool("IsAiming"));

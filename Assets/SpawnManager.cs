@@ -8,7 +8,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] zombiePrefabs;
     public int number;
     public float spawnRadius;
-    public bool spawnOnStart = true; 
+    public bool spawnOnStart = false; 
     //public GameObject ragDollPrefab;
 
     // Start is called before the first frame update
